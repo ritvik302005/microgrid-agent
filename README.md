@@ -62,6 +62,4 @@ npm run dev
 
 The frontend (static Vite build) deploys cleanly to Vercel as-is. The backend keeps its state (current cycle, history) in memory between requests, which doesn't fit a stateless serverless function well — it's a better fit for a normal long-running host (Render, Railway, Fly.io, a VM, etc.) than Vercel's Python serverless runtime. Point `VITE_API_URL` at wherever the backend ends up.
 
-## Team
 
-Final-year project, supervised by Dr. Shalu Gupta.
