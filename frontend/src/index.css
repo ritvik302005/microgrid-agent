@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  --radius: 0.75rem;
+
+  --background: #0e0f10;
+  --foreground: #f2f0ec;
+
+  --card: #16181a;
+  --card-foreground: #f2f0ec;
+
+  --popover: #16181a;
+  --popover-foreground: #f2f0ec;
+
+  --primary: #f2f0ec;
+  --primary-foreground: #0e0f10;
+
+  --secondary: rgba(255, 255, 255, 0.06);
+  --secondary-foreground: #f2f0ec;
+
+  --muted: rgba(255, 255, 255, 0.06);
+  --muted-foreground: #8b8f94;
+
+  --accent: #4fd8c4;
+  --accent-foreground: #0e0f10;
+
+  --destructive: #ff6b5c;
+  --destructive-foreground: #ffffff;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: #4fd8c4;
+
+  --solar: #ffb648;
+  --battery: #4fd8c4;
+  --grid: #ff6b5c;
+
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Consolas", monospace;
+
+  /* legacy aliases — EnergyFlow.jsx / HistoryChart.jsx / PipelineStepper.jsx
+     reference these var names directly and are staying unchanged */
+  --bg-panel: var(--card);
+  --text-primary: var(--foreground);
+  --text-muted: var(--muted-foreground);
+  --hairline: var(--border);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-solar: var(--solar);
+  --color-battery: var(--battery);
+  --color-grid: var(--grid);
+
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
