@@ -83,13 +83,20 @@ Grid price: Rs {state['grid_price_per_kwh']}/kWh
     # The original code only handled (2) — a Groq hiccup would crash /cycle entirely.
     try:
         response = llm.invoke([SystemMessage(content=SYSTEM_PROMPT), HumanMessage(content=human_prompt)])
-        raw = response.content.strip()
-        if raw.startswith("```"):
-            raw = raw.strip("`").replace("json", "", 1).strip()
-        try:
-            parsed = json.loads(raw)
-        except json.JSONDecodeError:
-            parsed = _fallback_decision(state, "could not parse LLM response")
+       raw = response.content.strip()
+if raw.startswith("```"):
+    raw = raw.strip("`").replace("json", "", 1).strip()
+
+# gpt-oss sometimes adds text before/after the JSON — extract just the {...} block
+import re
+match = re.search(r"\{.*\}", raw, re.DOTALL)
+if match:
+    raw = match.group(0)
+
+try:
+    parsed = json.loads(raw)
+except json.JSONDecodeError:
+    parsed = _fallback_decision(state, "could not parse LLM response")
     except Exception as e:
         parsed = _fallback_decision(state, f"LLM call failed ({e})")
 
