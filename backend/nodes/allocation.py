@@ -59,7 +59,7 @@ def _get_llm():
             groq_api_key=api_key,
             model="openai/gpt-oss-20b",
             temperature=0,
-            max_tokens=240,
+            max_tokens=1024,
         )
     return llm
 
@@ -143,7 +143,11 @@ Grid price: Rs {state['grid_price_per_kwh']}/kWh
             response_format=DECISION_RESPONSE_FORMAT,
         )
         parsed = _validated_decision(_extract_json(response.content), state)
-    except Exception:
+    except Exception as e:
+        import traceback
+        print("=== ALLOCATION ERROR ===")
+        traceback.print_exc()
+        print("=========================")
         fallback = True
         parsed = _fallback_decision(state)
     alerts = list(state.get("alerts", []))
