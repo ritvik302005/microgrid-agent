@@ -59,7 +59,11 @@ def _get_llm():
             groq_api_key=api_key,
             model="openai/gpt-oss-20b",
             temperature=0,
+<<<<<<< HEAD
             max_tokens=240,
+=======
+            max_tokens=1024,
+>>>>>>> agent/fix-allocator-json-fallback
         )
     return llm
 
@@ -143,7 +147,15 @@ Grid price: Rs {state['grid_price_per_kwh']}/kWh
             response_format=DECISION_RESPONSE_FORMAT,
         )
         parsed = _validated_decision(_extract_json(response.content), state)
+<<<<<<< HEAD
     except Exception:
+=======
+    except Exception as e:
+        import traceback
+        print("=== ALLOCATION ERROR ===")
+        traceback.print_exc()
+        print("=========================")
+>>>>>>> agent/fix-allocator-json-fallback
         fallback = True
         parsed = _fallback_decision(state)
     alerts = list(state.get("alerts", []))
@@ -152,4 +164,8 @@ Grid price: Rs {state['grid_price_per_kwh']}/kWh
             "Safety override: allocator output was unavailable or invalid; "
             "a deterministic safe allocation was applied."
         )
+<<<<<<< HEAD
     return {**state, "decision": parsed, "reasoning": parsed["reasoning"], "alerts": alerts}
+=======
+    return {**state, "decision": parsed, "reasoning": parsed["reasoning"], "alerts": alerts}
+>>>>>>> agent/fix-allocator-json-fallback
